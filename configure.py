@@ -1360,8 +1360,19 @@ def config_info_line(name, help_text):
   """Helper function to print formatted help text for Bazel config options."""
   print('\t--config=%-12s\t# %s' % (name, help_text))
 
+def show_config_info():
+  """Helper function to print bazel command options info"""
+  print('Preconfigured Bazel build configs. You can use any of the below by '
+        'adding "--config=<>" to your build command. See tools/bazel.rc for '
+        'more details.')
+  config_info_line('mkl', 'Build with MKL support.')
+  config_info_line('monolithic', 'Config for mostly static monolithic build.')
 
 def main():
+
+  if len(sys.argv) == 2 and (sys.argv[1] == '--help' or sys.argv[1] == '-h'):
+    show_config_info()
+
   parser = argparse.ArgumentParser()
   parser.add_argument("--workspace",
                       type=str,
@@ -1482,11 +1493,7 @@ def main():
       create_android_ndk_rule(environ_cp)
       create_android_sdk_rule(environ_cp)
 
-  print('Preconfigured Bazel build configs. You can use any of the below by '
-        'adding "--config=<>" to your build command. See tools/bazel.rc for '
-        'more details.')
-  config_info_line('mkl', 'Build with MKL support.')
-  config_info_line('monolithic', 'Config for mostly static monolithic build.')
+  show_config_info()
 
 if __name__ == '__main__':
   main()
