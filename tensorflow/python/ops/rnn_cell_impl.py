@@ -686,6 +686,7 @@ class LSTMCell(_LayerRNNCell):
     self._forget_bias = forget_bias
     self._state_is_tuple = state_is_tuple
     self._activation = activation or math_ops.tanh
+    self._dtype = self.dtype
 
     if num_proj:
       self._state_size = (
