@@ -1362,11 +1362,11 @@ def config_info_line(name, help_text):
 
 def show_config_info():
   """Helper function to print bazel command options info"""
-  print('Preconfigured Bazel build configs. You can use any of the below by '
-        'adding "--config=<>" to your build command. See tools/bazel.rc for '
+  config_info_line('--config=<>', 'Preconfigured Bazel build configs. You can use any of the below in your build command. See tools/bazel.rc for '
         'more details.')
   config_info_line('mkl', 'Build with MKL support.')
   config_info_line('monolithic', 'Config for mostly static monolithic build.')
+  config_info_line('--workspace=<>', 'The absolute path to your active Bazel workspace.')
 
 def main():
 
