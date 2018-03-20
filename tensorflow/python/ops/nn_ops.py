@@ -150,10 +150,10 @@ class _NonAtrousConvolution(object):
                                                               conv_dims))
     if conv_dims == 1:
       # conv1d uses the 2-d data format names
-      if data_format is None or data_format == "NWC":
-        data_format_2d = "NHWC"
-      elif data_format == "NCW":
-        data_format_2d = "NCHW"
+      if data_format is None:
+        data_format_2d = "NWC"
+      elif data_format == "NCW" or data_format == "NWC":
+        data_format_2d = data_format
       else:
         raise ValueError("data_format must be \"NWC\" or \"NCW\".")
       self.strides = strides[0]
