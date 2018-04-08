@@ -20,6 +20,7 @@ py_library(
         "python/ops/fwd_gradients.py",
         "python/ops/sampling_ops.py",
         "python/ops/scaled_softplus.py",
+        "python/ops/mode_relu.py",
     ],
     srcs_version = "PY2AND3",
     visibility = ["//visibility:public"],
@@ -96,5 +97,18 @@ py_test(
         "//tensorflow/python:constant_op",
         "//tensorflow/python:gradient_checker",
         "//third_party/py/numpy",
+    ],
+)
+
+py_test(
+    name = "mod_relu_test",
+    size = "small",
+    srcs = ["python/ops/mod_relu_test.py"],
+    srcs_version = "PY2AND3",
+    deps = [
+        ":nn_py",
+        "//tensorflow/python:client_testlib",
+        "//tensorflow/python:constant_op",
+        "//tensorflow/python:math_ops",
     ],
 )
