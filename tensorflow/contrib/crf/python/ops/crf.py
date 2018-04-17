@@ -489,7 +489,7 @@ def crf_decode(potentials, transition_params, sequence_length):
         time_major=False,
         dtype=dtypes.int32)
     backpointers = gen_array_ops.reverse_sequence(  # [B, T - 1, O]
-        backpointers, sequence_length_less_one, seq_axis=1)
+        backpointers, sequence_length_less_one, seq_dim=1)
 
     # Computes backward decoding. Extract tag indices from backpointers.
     crf_bwd_cell = CrfDecodeBackwardRnnCell(num_tags)
@@ -507,7 +507,7 @@ def crf_decode(potentials, transition_params, sequence_length):
     decode_tags = array_ops.concat([initial_state, decode_tags],   # [B, T]
                                    axis=1)
     decode_tags = gen_array_ops.reverse_sequence(  # [B, T]
-        decode_tags, sequence_length, seq_axis=1)
+        decode_tags, sequence_length, seq_dim=1)
 
     best_score = math_ops.reduce_max(last_score, axis=1)  # [B]
     return decode_tags, best_score
