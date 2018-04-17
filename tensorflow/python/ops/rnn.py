@@ -423,7 +423,7 @@ def bidirectional_dynamic_rnn(cell_fw, cell_bw, inputs, sequence_length=None,
       if seq_lengths is not None:
         return array_ops.reverse_sequence(
             input=input_, seq_lengths=seq_lengths,
-            seq_dim=seq_dim, batch_dim=batch_dim)
+            seq_axis=seq_dim, batch_axis=batch_dim)
       else:
         return array_ops.reverse(input_, axis=[seq_dim])
 

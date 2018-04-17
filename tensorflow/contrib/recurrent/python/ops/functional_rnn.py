@@ -369,7 +369,7 @@ def bidirectional_functional_rnn(
       if seq_lengths is not None:
         return array_ops.reverse_sequence(
             input=input_, seq_lengths=seq_lengths,
-            seq_dim=seq_dim, batch_dim=batch_dim)
+            seq_axis=seq_dim, batch_axis=batch_dim)
       else:
         # See b/69305369.
         assert not use_tpu, (
